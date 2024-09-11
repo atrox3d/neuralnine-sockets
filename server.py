@@ -8,9 +8,13 @@ logger = helpers.setup_logger(__name__)
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(config.ADDRESS)
 server.listen(5)
+
+SERVER = socket.gethostbyname(socket.gethostname())
+
 try:
     while True:
         logger.info(f'waiting for connections @{config.HOST}:{config.PORT}...')
+        logger.info(f'{SERVER = }')
         client, address = server.accept()
         logger.info(f'connected to {address}')
 
