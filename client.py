@@ -2,18 +2,18 @@ import socket
 
 import servercfg
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client.connect(servercfg.ADDRESS)
+server.connect(servercfg.ADDRESS)
 
 message = 'hello'
 print(f'sending {message!r}...')
-sent = client.send(message.encode())
+sent = server.send(message.encode())
 print(f'{sent = }')
 
 print('receving answer...')
-answer = servercfg.receive_message(client)
+# print(server.recv(1024))
+answer = servercfg.receive_message(server)
 print(f'{answer = }')
-
 print('closing client')
-client.close()
+server.close()

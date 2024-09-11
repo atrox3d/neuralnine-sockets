@@ -6,15 +6,27 @@ def get_ipaddress() -> str:
     address = socket.gethostbyname(hostname)
     return address
 
-def receive_message(client:socket.socket, buffer=1024):
-    return client.recv(buffer).decode()
+def _receive_message(endpoint:socket.socket, buffer=1024):
+    endpoint.settimeout(None)
     message = ''
     while True:
-        chunk = client.recv(buffer).decode()
-        if len(chunk) < 1:
+        try:
+            print('waiting for recv...')
+            data = endpoint.recv(buffer).decode()
+            print(f'received {len(data)} bytes: {data}')
+            if not data:
+                print('no data received')
+                break
+        except socket.timeout:
+            print('reached timeout while waiting for data')
             break
-        message += chunk
+        # if len(data) < 1:
+            # break
+        message += data
     return message
+
+def receive_message(endpoint:socket.socket, buffer=1024):
+    return endpoint.recv(buffer).decode()
 
 # HOST = get_ipaddress()
 HOST = 'localhost'

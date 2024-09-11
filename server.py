@@ -22,4 +22,7 @@ try:
         print(f'connection with {address} closed.')
 except KeyboardInterrupt:
     print('\nshutting down server')
+finally:
+    print('closing connection')
     server.close()
+
