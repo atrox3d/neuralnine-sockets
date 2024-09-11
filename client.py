@@ -33,3 +33,10 @@ answer = helpers.receive_message(server)
 logger.info(f'{answer = }')
 logger.info('closing client')
 server.close()
+
+try:
+    while True:
+        logger.info('wait loop')
+        time.sleep(10)
+except KeyboardInterrupt:
+    logger.warning('exiting')
