@@ -3,18 +3,20 @@ import socket
 import config
 import helpers
 
+logger = helpers.setup_logger(__name__)
+
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 server.connect(config.ADDRESS)
 
 message = 'hello'
-print(f'sending {message!r}...')
+logger.info(f'sending {message!r}...')
 sent = server.send(message.encode())
-print(f'{sent = }')
+logger.info(f'{sent = }')
 
-print('receving answer...')
-# print(server.recv(1024))
+logger.info('receving answer...')
+# logger.info(server.recv(1024))
 answer = helpers.receive_message(server)
-print(f'{answer = }')
-print('closing client')
+logger.info(f'{answer = }')
+logger.info('closing client')
 server.close()
