@@ -10,7 +10,7 @@ server.bind(config.ADDRESS)
 server.listen(5)
 try:
     while True:
-        logger.info('waiting for connections...')
+        logger.info(f'waiting for connections @{config.HOST}:{config.PORT}...')
         client, address = server.accept()
         logger.info(f'connected to {address}')
 
