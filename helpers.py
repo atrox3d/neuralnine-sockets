@@ -6,6 +6,9 @@ def get_ipaddress() -> str:
     address = socket.gethostbyname(hostname)
     return address
 
+def receive_message(endpoint:socket.socket, buffer=1024):
+    return endpoint.recv(buffer).decode()
+
 def _receive_message(endpoint:socket.socket, buffer=1024):
     endpoint.settimeout(None)
     message = ''
@@ -24,6 +27,3 @@ def _receive_message(endpoint:socket.socket, buffer=1024):
             # break
         message += data
     return message
-
-def receive_message(endpoint:socket.socket, buffer=1024):
-    return endpoint.recv(buffer).decode()
