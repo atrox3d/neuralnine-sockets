@@ -27,8 +27,3 @@ def _receive_message(endpoint:socket.socket, buffer=1024):
 
 def receive_message(endpoint:socket.socket, buffer=1024):
     return endpoint.recv(buffer).decode()
-
-# HOST = get_ipaddress()
-HOST = 'localhost'
-PORT = 9090
-ADDRESS = (HOST, PORT)

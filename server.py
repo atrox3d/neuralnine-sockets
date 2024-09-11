@@ -1,9 +1,10 @@
 import socket
-import servercfg
+import config
+import helpers
 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(servercfg.ADDRESS)
+server.bind(config.ADDRESS)
 server.listen(5)
 try:
     while True:
@@ -12,7 +13,7 @@ try:
         print(f'connected to {address}')
 
         print(f'receiving message from {address}...')
-        message = servercfg.receive_message(client)
+        message = helpers.receive_message(client)
         print(f'{message = }')
 
         print(f'answering to {address}')

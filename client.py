@@ -1,10 +1,11 @@
 import socket
 
-import servercfg
+import config
+import helpers
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server.connect(servercfg.ADDRESS)
+server.connect(config.ADDRESS)
 
 message = 'hello'
 print(f'sending {message!r}...')
@@ -13,7 +14,7 @@ print(f'{sent = }')
 
 print('receving answer...')
 # print(server.recv(1024))
-answer = servercfg.receive_message(server)
+answer = helpers.receive_message(server)
 print(f'{answer = }')
 print('closing client')
 server.close()
